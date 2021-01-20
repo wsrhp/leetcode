@@ -1,24 +1,18 @@
 package com.wsrhp.leetcode.array;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class MajorityElement {
 
     public int majorityElement(int[] nums) {
-        int len = nums.length;
-        int targetCount = len / 2;
-        Map<Integer, Integer> historyCount = new HashMap<>();
-        for (int currentNum : nums) {
-            Integer existCount = historyCount.get(currentNum);
-            if (existCount == null) {
-                historyCount.put(currentNum, 1);
-                continue;
+        int count = 0;
+        int candidate = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
             }
-            if (existCount + 1 > targetCount) return currentNum;
-            historyCount.put(currentNum, existCount + 1);
+            count += (num == candidate) ? 1 : -1;
         }
-        throw new RuntimeException("No Majority Element");
+        return candidate;
     }
 
     public static void main(String[] args) {
