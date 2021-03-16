@@ -20,6 +20,7 @@ public class MergeKSortedList {
         if (l == r) return lists[l];
         if (l > r) return null;
         int mid = (l + r) >> 1;
+        // 递归函数f(f)，可以套函数f(g(f)) 实现递归
         return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
     }
 
